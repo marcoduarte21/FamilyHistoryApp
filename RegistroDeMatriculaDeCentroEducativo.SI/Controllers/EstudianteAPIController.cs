@@ -28,14 +28,14 @@ namespace RegistroDeMatriculaDeCentroEducativo.SI.Controllers
         }
 
         [HttpPost("CreateStudent")]
-        public IActionResult CreateStudent([FromBody] Model.Estudiante estudiante)
+        public IActionResult CreateStudent([FromBody] Model.EstudianteParaIE estudiante)
         {
             GestorDeLaMatricula.Registre(estudiante);
             return Ok(estudiante);
         }
 
         [HttpPut("EditStudent")]
-        public IActionResult EditStudent([FromBody] Model.Estudiante estudiante)
+        public IActionResult EditStudent([FromBody] Model.EstudianteParaIE estudiante)
         {
 
             if (ModelState.IsValid)

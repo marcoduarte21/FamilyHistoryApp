@@ -251,10 +251,20 @@ namespace RegistroDeMatriculaDeCentroEducativo.BL
             return null;
             }
 
-        public void Registre(Estudiante estudiante)
+        public void Registre(EstudianteParaIE estudiante)
         {
-                    estudiante.Edad = RetorneLaEdad(estudiante);
-                    Connection.Estudiantes.Add(estudiante);
+                    Model.Estudiante estudiante1 = new Estudiante();
+                    estudiante1.Cedula = estudiante.Cedula;
+                    estudiante1.CedulaMadre = estudiante.CedulaMadre;
+                    estudiante1.CedulaPadre = estudiante.CedulaPadre;
+            estudiante1.FechaDeNacimiento = estudiante.FechaDeNacimiento;
+            estudiante1.Sexo = estudiante.Sexo;
+            estudiante1.Nombre = estudiante.Nombre;
+            estudiante1.PrimerApellido = estudiante.PrimerApellido;
+            estudiante1.SegundoApellido = estudiante.SegundoApellido;
+
+
+                    Connection.Estudiantes.Add(estudiante1);
                     Connection.SaveChanges();
                 
         }
