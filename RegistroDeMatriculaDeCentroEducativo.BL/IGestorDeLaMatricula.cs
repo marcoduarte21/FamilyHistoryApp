@@ -8,7 +8,7 @@ using System.Xml.Schema;
 
 namespace RegistroDeMatriculaDeCentroEducativo.BL
 {
-    internal interface IGestorDeLaMatricula
+    public interface IGestorDeLaMatricula
     {
         public void Registre(Model.Estudiante estudiante);
         public List<Model.Estudiante> ListeLosEstudiantes();
