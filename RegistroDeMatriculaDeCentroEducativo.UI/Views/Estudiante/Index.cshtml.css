@@ -1,0 +1,38 @@
+﻿body {
+    font-family: 'Sans Serif Collection';
+}
+
+.btn_create {
+    text-decoration: none;
+    border: 5px;
+    background-color: dodgerblue;
+    color: #fff;
+    padding: 5px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.thead-color{
+    background-color:darkcyan;
+    color: #fff;
+}
+
+.btn-edit {
+    text-decoration: none;
+    border: 5px;
+    background-color: dodgerblue;
+    color: #fff;
+    padding: 4px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.btn-details {
+    text-decoration: none;
+    border: 5px;
+    background-color: #36CD81;
+    color: #fff;
+    padding: 4px;
+    border-radius: 10px;
+    font-weight: bold;
+}

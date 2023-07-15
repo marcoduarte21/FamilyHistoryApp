@@ -1,0 +1,71 @@
+﻿@model IEnumerable<RegistroDeMatriculaDeCentroEducativo.Model.Estudiante>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lista de mujeres registradas</h1>
+
+<p>
+    <a asp-controller="Estudiante" asp-action="Create">Crear nueva</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.Cedula)
+            </th>
+            <th>
+                Nombre completo
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sexo)
+            </th>
+            <th>
+                Edad
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+
+        }
+        @foreach (var item in Model)
+        {
+
+            @if (item.FechaDeNacimiento.Value.Month > DateTime.Today.Month
+           || item.FechaDeNacimiento.Value.Month == DateTime.Today.Month &&
+           item.FechaDeNacimiento.Value.Day < DateTime.Today.Day)
+            {
+                item.Edad = DateTime.Today.Year - item.FechaDeNacimiento.Value.Year - 1;
+            }
+            else
+            {
+                item.Edad = DateTime.Today.Year - item.FechaDeNacimiento.Value.Year;
+            }
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cedula)
+                </td>
+                <td>
+                    @item.Nombre @item.PrimerApellido @item.SegundoApellido
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sexo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Edad)
+                </td>
+            <td>
+                
+                @Html.ActionLink("Detalles", "Details", new {  cedula=item.Cedula }) 
+                
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
