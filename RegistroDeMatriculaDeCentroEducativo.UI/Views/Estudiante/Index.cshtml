@@ -1,0 +1,70 @@
+﻿@model IEnumerable<RegistroDeMatriculaDeCentroEducativo.Model.Estudiante>
+
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Lista de estudiantes</h1>
+
+<p>
+    <a href="Estudiante/Create" class="btn_create">Crear nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr class="thead-color">
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Cedula)
+            </th>
+            <th>
+                Nombre completo
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sexo)
+            </th>
+            <th>
+                Edad
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            
+        }
+@foreach (var item in Model) {
+            @if (item.FechaDeNacimiento.Value.Month > DateTime.Today.Month 
+            || item.FechaDeNacimiento.Value.Month == DateTime.Today.Month && 
+            item.FechaDeNacimiento.Value.Day < DateTime.Today.Day)
+            {
+                item.Edad = DateTime.Today.Year - item.FechaDeNacimiento.Value.Year - 1;
+            }
+            else
+            {
+                item.Edad = DateTime.Today.Year - item.FechaDeNacimiento.Value.Year;
+            }
+            <tr>
+            
+            <td>
+                @Html.DisplayFor(modelItem => item.Cedula)
+            </td>
+            <td>
+                   @item.Nombre @item.PrimerApellido @item.SegundoApellido
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sexo)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Edad)
+            </td>
+            
+            <td>
+                <a href="Estudiante/Edit?id=@item.Id" class="btn-edit">Editar</a> |
+                    <a href="Estudiante/Details?id=@item.Id" class="btn-details">Detalles</a>
+            </td>
+        </tr>
+            }
+    </tbody>
+</table>

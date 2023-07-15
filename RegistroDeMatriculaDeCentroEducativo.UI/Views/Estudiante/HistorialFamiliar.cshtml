@@ -1,0 +1,288 @@
+﻿@model RegistroDeMatriculaDeCentroEducativo.Model.Estudiante;
+
+@{
+    ViewData["Title"] = "Info de los padres";
+    List<RegistroDeMatriculaDeCentroEducativo.Model.Estudiante> ListaAbuelos = ViewBag.ListaDeLosAbuelos;
+    List<RegistroDeMatriculaDeCentroEducativo.Model.Estudiante> ListaDeHermanos = ViewBag.ListaDeHermanos;
+    List<RegistroDeMatriculaDeCentroEducativo.Model.Estudiante> ListaDeTios = ViewBag.ListaDeTios;
+    List<RegistroDeMatriculaDeCentroEducativo.Model.Estudiante> ListaDePrimos = ViewBag.ListaDePrimos;
+    List<RegistroDeMatriculaDeCentroEducativo.Model.Estudiante> ListaDeHijos = ViewBag.ListaDeHijos;
+    List<RegistroDeMatriculaDeCentroEducativo.Model.Estudiante> ListaDePadres = ViewBag.ListaDePadres;
+}
+
+<h1>Historial familiar</h1><br />
+<a asp-controller="Estudiante" asp-action="Create">nuevo</a>
+<h4>Información de los hijos</h4>
+@if (ListaDeHijos.Count == 0 || ListaDeHijos == null)
+{
+    <p>No existe información.</p>
+}else{
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nombre
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var hijo in ListaDeHijos)
+        {
+            <tr>
+                <td>
+                    @hijo.Nombre @hijo.PrimerApellido @hijo.SegundoApellido
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+}
+
+<h4>Información del padre</h4>
+@if (ListaDePadres == null || ListaDePadres.Count == 0)
+{
+    <p>No existe información.</p>
+}else{
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nombre
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ListaDePadres)
+        {
+            @if (item.Sexo == RegistroDeMatriculaDeCentroEducativo.Model.Sexo.MASCULINO)
+            {
+                <tr>
+                    <td>
+                    @item.Nombre @item.PrimerApellido @item.SegundoApellido
+                </td>
+
+            </tr>
+            }
+        }
+    </tbody>
+</table>
+}
+<h4>Información de la madre</h4>
+@if (ListaDePadres == null || ListaDePadres.Count == 0)
+{
+    <p>No existe información.</p>
+}else{
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nombre
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+            @foreach (var item in ListaDePadres)
+        {
+            @if (item.Sexo == RegistroDeMatriculaDeCentroEducativo.Model.Sexo.FEMENINO)
+            {
+                <tr>
+                    <td>
+                        @item.Nombre @item.PrimerApellido @item.SegundoApellido
+                    </td>
+
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+}
+
+<h4>Información de los hermanos</h4>
+
+@if (ListaDeHermanos == null || ListaDeHermanos.Count == 0)
+{
+    <p>No existe información.</p>
+}else{
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nombre
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var hermano in ListaDeHermanos)
+        {
+            <tr>
+                <td>
+                    @hermano.Nombre @hermano.PrimerApellido @hermano.SegundoApellido
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+}
+
+<h4>Información de los abuelos</h4>
+
+@if (ListaAbuelos == null || ListaAbuelos.Count == 0)
+{
+    <p>No existe información.</p>
+}else{
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nombre
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var abuelo in ListaAbuelos)
+        {
+
+            @if (abuelo.Sexo == RegistroDeMatriculaDeCentroEducativo.Model.Sexo.MASCULINO)
+            {
+                <tr>
+                    <td>
+                    @abuelo.Nombre @abuelo.PrimerApellido @abuelo.SegundoApellido
+                </td>
+
+            </tr>
+            }
+        }
+    </tbody>
+</table>
+}
+
+<h4>Información de los abuelas</h4>
+
+@if (ListaAbuelos == null || ListaAbuelos.Count == 0)
+{
+    <p>No existe información.</p>
+}else{
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nombre
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var abuela in ListaAbuelos)
+        {
+
+            @if (abuela.Sexo == RegistroDeMatriculaDeCentroEducativo.Model.Sexo.FEMENINO)
+            {
+                <tr>
+                    <td>
+                    @abuela.Nombre @abuela.PrimerApellido @abuela.SegundoApellido
+                </td>
+
+            </tr>
+            }
+        }
+    </tbody>
+</table>
+}
+
+<h4>Información de los tíos</h4>
+@if (ListaDeTios == null || ListaDeTios.Count == 0)
+{
+    <p>No existe información.</p>
+}else{
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nombre
+            </th>
+            <th>Parentesco</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var tio in ListaDeTios)
+        {
+                <tr>
+                    <td>
+                        @tio.Nombre @tio.PrimerApellido @tio.SegundoApellido
+                    </td>
+                @foreach (var findPadre in ListaDePadres)
+                {
+                    @if (tio.PrimerApellido == findPadre.PrimerApellido
+                            && tio.Sexo == RegistroDeMatriculaDeCentroEducativo.Model.Sexo.MASCULINO
+                         && findPadre.Sexo == RegistroDeMatriculaDeCentroEducativo.Model.Sexo.MASCULINO)
+                    {
+                        <td>
+                                Tío paterno
+                        </td>
+                    }
+                    @if (tio.PrimerApellido == findPadre.PrimerApellido
+                   && tio.Sexo == RegistroDeMatriculaDeCentroEducativo.Model.Sexo.FEMENINO
+                   && findPadre.Sexo == RegistroDeMatriculaDeCentroEducativo.Model.Sexo.MASCULINO)
+                    {
+                        <td>
+                            Tía paterna
+                        </td>
+                    }
+                    @if (tio.PrimerApellido == findPadre.PrimerApellido
+                   && tio.Sexo == RegistroDeMatriculaDeCentroEducativo.Model.Sexo.MASCULINO
+                   && findPadre.Sexo == RegistroDeMatriculaDeCentroEducativo.Model.Sexo.FEMENINO)
+                    {
+                        <td>
+                            Tío materno
+                        </td>
+                    }
+                    @if (tio.PrimerApellido == findPadre.PrimerApellido
+                   && tio.Sexo == RegistroDeMatriculaDeCentroEducativo.Model.Sexo.FEMENINO
+                   && findPadre.Sexo == RegistroDeMatriculaDeCentroEducativo.Model.Sexo.FEMENINO)
+                    {
+                        <td>
+                            Tía materna
+                        </td>
+                    }
+                    }
+            </tr>
+        }
+    </tbody>
+</table>
+}
+<h4>Información de los primos</h4>
+@if (ListaDePrimos == null || ListaDePrimos.Count == 0)
+{
+    <p>No existe información.</p>
+}else{
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nombre
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var primo in ListaDePrimos)
+        {
+            <tr>
+                <td>
+                    @primo.Nombre @primo.PrimerApellido @primo.SegundoApellido
+                </td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+}
+
