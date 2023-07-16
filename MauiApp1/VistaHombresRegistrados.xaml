@@ -13,7 +13,9 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*" />
-                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="1*" />
 
@@ -21,8 +23,10 @@
 
             <Label Grid.Column="0" Text="Cedula" />
             <Label Grid.Column="1" Text="Nombre" />
-            <Label Grid.Column="2" Text="Sexo" />
-            <Label Grid.Column="3" Text="Edad" />
+            <Label Grid.Column="2"  Text="Primer Apellido"/>
+            <Label Grid.Column="3" Text="Segundo Apellido"/>
+            <Label Grid.Column="4" Text="Sexo" />
+            <Label Grid.Column="5" Text="Edad" />
 
         </Grid>
 
@@ -33,7 +37,9 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1*" />
-                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" />
                                 <ColumnDefinition Width="1*" />
                                 <ColumnDefinition Width="1*" />
 
@@ -42,18 +48,21 @@
                             <Label Grid.Column="0"
                                    Text="{Binding Cedula}"
                                    HorizontalOptions="StartAndExpand" />
-
                             <Label Grid.Column="1"
                                    Text="{Binding Nombre}"
                                    HorizontalOptions="StartAndExpand" />
-
                             <Label Grid.Column="2"
+                                   Text="{Binding PrimerApellido}"
+                                   HorizontalOptions="StartAndExpand" />
+                            <Label Grid.Column="3"
+                                   Text="{Binding SegundoApellido}"
+                                   HorizontalOptions="StartAndExpand" />
+                            <Label Grid.Column="4"
                                    Text="{Binding Sexo}"
                                    HorizontalOptions="StartAndExpand" />
-
-                            <Label Grid.Column="3"
+                            <Label Grid.Column="5"
                                    Text="{Binding Edad}"
-                                   HorizontalOptions="EndAndExpand" />
+                                   HorizontalOptions="StartAndExpand" />
 
 
                         </Grid>
