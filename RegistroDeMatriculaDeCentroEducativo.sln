@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegistroDeMatriculaDeCentro
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RegistroDeMatriculaDeCentroEducativo.SI", "RegistroDeMatriculaDeCentroEducativo.SI\RegistroDeMatriculaDeCentroEducativo.SI.csproj", "{2AE1EDC9-D89C-47F5-90A7-1A2245EAA44D}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AplicacionMovil", "..\..\..\Downloads\MauiApp1\AplicacionMovil.csproj", "{216AFE17-6C4D-4ABC-9738-6520D58A22A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,12 @@ Global
 		{2AE1EDC9-D89C-47F5-90A7-1A2245EAA44D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2AE1EDC9-D89C-47F5-90A7-1A2245EAA44D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2AE1EDC9-D89C-47F5-90A7-1A2245EAA44D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{216AFE17-6C4D-4ABC-9738-6520D58A22A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{216AFE17-6C4D-4ABC-9738-6520D58A22A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{216AFE17-6C4D-4ABC-9738-6520D58A22A9}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{216AFE17-6C4D-4ABC-9738-6520D58A22A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{216AFE17-6C4D-4ABC-9738-6520D58A22A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{216AFE17-6C4D-4ABC-9738-6520D58A22A9}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
