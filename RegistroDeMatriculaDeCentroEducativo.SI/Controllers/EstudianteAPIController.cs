@@ -40,8 +40,7 @@ namespace RegistroDeMatriculaDeCentroEducativo.SI.Controllers
 
             if (ModelState.IsValid)
             {
-                GestorDeLaMatricula.Edite(estudiante.Id, estudiante.Cedula, estudiante.Nombre, estudiante.PrimerApellido, estudiante.SegundoApellido, estudiante.Sexo, (DateTime)estudiante.FechaDeNacimiento,
-                estudiante.CedulaMadre, estudiante.CedulaPadre);
+                GestorDeLaMatricula.Edite(estudiante);
                 return Ok();
             }
             else
@@ -50,7 +49,6 @@ namespace RegistroDeMatriculaDeCentroEducativo.SI.Controllers
             }
 
         }
-
 
     }
 

@@ -111,7 +111,7 @@ namespace RegistroDeMatriculaDeCentroEducativo.UI.Controllers
         // POST: EstudianteController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task< ActionResult> Edit(Model.Estudiante estudiante)
+        public async Task< ActionResult> Edit(Model.EstudianteParaIE estudiante)
         {
             try
             {
@@ -121,7 +121,7 @@ namespace RegistroDeMatriculaDeCentroEducativo.UI.Controllers
                 var byteContent = new ByteArrayContent(buffer);
 
                 byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                await httpClient.PostAsync("https://api-matricula-estudiantes.azurewebsites.net/api/EstudianteAPI/EditStudent", byteContent);
+                var response = await httpClient.PutAsync("https://api-matricula-estudiantes.azurewebsites.net/api/EstudianteAPI/EditStudent", byteContent);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -130,115 +130,45 @@ namespace RegistroDeMatriculaDeCentroEducativo.UI.Controllers
             }
         }
 
-        public async Task<ActionResult> HistorialFamiliar(string cedula)
+        public ActionResult HistorialFamiliar(string cedula)
         {
 
+            Model.Estudiante estudiante = GestorDeLaMatricula.RetorneElEstudiantePorIdentificacion(cedula);
+            string nombre = estudiante.Nombre;
+
+            ViewBag.NombreDelEstudiante = nombre;
+
             List<Model.Estudiante> PadresDelEstudiante;
-            PadresDelEstudiante = await GetPadres();
+            PadresDelEstudiante = GestorDeLaMatricula.ListeLosPadres(cedula);
             ViewBag.ListaDePadres = PadresDelEstudiante;
 
+
             List<Model.Estudiante> AbuelosDelEstudiante;
-            AbuelosDelEstudiante = await GetAbuelos();
+            AbuelosDelEstudiante = GestorDeLaMatricula.ListeLosAbuelos(cedula);
             ViewBag.ListaDeLosAbuelos = AbuelosDelEstudiante;
 
+
             List<Model.Estudiante> HermanosDelEstudiante;
-            HermanosDelEstudiante = await GetHermanos();
+            HermanosDelEstudiante = GestorDeLaMatricula.ListeLosHermanos(cedula);
             ViewBag.ListaDeHermanos = HermanosDelEstudiante;
 
             List<Model.Estudiante> TiosDelEstudiante;
-            TiosDelEstudiante = await GetTios();
+            TiosDelEstudiante = GestorDeLaMatricula.ListeLosTios(cedula);
             ViewBag.ListaDeTios = TiosDelEstudiante;
 
             List<Model.Estudiante> PrimosDelEstudiante;
-            PrimosDelEstudiante = await GetPrimos();
+            PrimosDelEstudiante = GestorDeLaMatricula.ListeLosPrimos(cedula);
             ViewBag.ListaDePrimos = PrimosDelEstudiante;
 
             List<Model.Estudiante> HijosDelEstudiante;
-            HijosDelEstudiante = await GetHijos();
+            HijosDelEstudiante = GestorDeLaMatricula.ListeLosHijos(cedula);
             ViewBag.ListaDeHijos = HijosDelEstudiante;
 
             return View();
 
         }
 
-        public static async Task<List<Model.Estudiante>> GetPadres()
-        {
-
-            List<Model.Estudiante> ListaDeEstudiantes;
-
-            var httpClient = new HttpClient();
-            var respuesta = await httpClient.GetAsync("https://api-matricula-estudiantes.azurewebsites.net/api/HistorialFamiliarAPI/GetPadres");
-            string apiRespuesta = await respuesta.Content.ReadAsStringAsync();
-            ListaDeEstudiantes = JsonConvert.DeserializeObject<List<Model.Estudiante>>(apiRespuesta);
-
-            return ListaDeEstudiantes.ToList();
-        }
-
-        public async Task<List<Model.Estudiante>> GetHijos()
-        {
-
-            List<Model.Estudiante> ListaDeEstudiantes;
-
-            var httpClient = new HttpClient();
-            var respuesta = await httpClient.GetAsync("https://api-matricula-estudiantes.azurewebsites.net/api/HistorialFamiliarAPI/GetHijos");
-            string apiRespuesta = await respuesta.Content.ReadAsStringAsync();
-            ListaDeEstudiantes = JsonConvert.DeserializeObject<List<Model.Estudiante>>(apiRespuesta);
-
-            return ListaDeEstudiantes.ToList();
-        }
-
-
-        public async Task<List<Model.Estudiante>> GetAbuelos()
-        {
-
-            List<Model.Estudiante> ListaDeEstudiantes;
-
-            var httpClient = new HttpClient();
-            var respuesta = await httpClient.GetAsync("https://api-matricula-estudiantes.azurewebsites.net/api/HistorialFamiliarAPI/GetAbuelos");
-            string apiRespuesta = await respuesta.Content.ReadAsStringAsync();
-            ListaDeEstudiantes = JsonConvert.DeserializeObject<List<Model.Estudiante>>(apiRespuesta);
-
-            return ListaDeEstudiantes.ToList();
-        }
-
-        public async Task<List<Model.Estudiante>> GetHermanos()
-        {
-
-            List<Model.Estudiante> ListaDeEstudiantes;
-
-            var httpClient = new HttpClient();
-            var respuesta = await httpClient.GetAsync("https://api-matricula-estudiantes.azurewebsites.net/api/HistorialFamiliarAPI/GetHermanos");
-            string apiRespuesta = await respuesta.Content.ReadAsStringAsync();
-            ListaDeEstudiantes = JsonConvert.DeserializeObject<List<Model.Estudiante>>(apiRespuesta);
-
-            return ListaDeEstudiantes.ToList();
-        }
-
-        public async Task<List<Model.Estudiante>> GetTios()
-        {
-
-            List<Model.Estudiante> ListaDeEstudiantes;
-
-            var httpClient = new HttpClient();
-            var respuesta = await httpClient.GetAsync("https://api-matricula-estudiantes.azurewebsites.net/api/HistorialFamiliarAPI/GetTios");
-            string apiRespuesta = await respuesta.Content.ReadAsStringAsync();
-            ListaDeEstudiantes = JsonConvert.DeserializeObject<List<Model.Estudiante>>(apiRespuesta);
-
-            return ListaDeEstudiantes.ToList();
-        }
-
-        public async Task<List<Model.Estudiante>> GetPrimos()
-        {
-
-            List<Model.Estudiante> ListaDeEstudiantes;
-
-            var httpClient = new HttpClient();
-            var respuesta = await httpClient.GetAsync("https://api-matricula-estudiantes.azurewebsites.net/api/HistorialFamiliarAPI/GetPrimos");
-            string apiRespuesta = await respuesta.Content.ReadAsStringAsync();
-            ListaDeEstudiantes = JsonConvert.DeserializeObject<List<Model.Estudiante>>(apiRespuesta);
-
-            return ListaDeEstudiantes.ToList();
-        }
+        
 
     }
 

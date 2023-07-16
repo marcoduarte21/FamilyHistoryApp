@@ -1,17 +1,18 @@
 ﻿@model RegistroDeMatriculaDeCentroEducativo.Model.Estudiante;
 
 @{
-    ViewData["Title"] = "Info de los padres";
+    ViewData["Title"] = "Historial familiar";
     List<RegistroDeMatriculaDeCentroEducativo.Model.Estudiante> ListaAbuelos = ViewBag.ListaDeLosAbuelos;
     List<RegistroDeMatriculaDeCentroEducativo.Model.Estudiante> ListaDeHermanos = ViewBag.ListaDeHermanos;
     List<RegistroDeMatriculaDeCentroEducativo.Model.Estudiante> ListaDeTios = ViewBag.ListaDeTios;
     List<RegistroDeMatriculaDeCentroEducativo.Model.Estudiante> ListaDePrimos = ViewBag.ListaDePrimos;
     List<RegistroDeMatriculaDeCentroEducativo.Model.Estudiante> ListaDeHijos = ViewBag.ListaDeHijos;
     List<RegistroDeMatriculaDeCentroEducativo.Model.Estudiante> ListaDePadres = ViewBag.ListaDePadres;
+    string nombre = ViewBag.NombreDelEstudiante;
 }
 
-<h1>Historial familiar</h1><br />
-<a asp-controller="Estudiante" asp-action="Create">nuevo</a>
+<h1>Historial familiar de @nombre</h1><br />
+
 <h4>Información de los hijos</h4>
 @if (ListaDeHijos.Count == 0 || ListaDeHijos == null)
 {

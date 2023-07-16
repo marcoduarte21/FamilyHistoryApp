@@ -14,8 +14,7 @@ namespace RegistroDeMatriculaDeCentroEducativo.BL
         public List<Model.Estudiante> ListeLosEstudiantes();
         public Model.Estudiante RetorneElEstudiantePorIdentificacion(string identificacion);
         public Model.Estudiante RetorneElEstudiantePorId(int id);
-        public void Edite(int id,string cedula, string nombre, string primerApellido, string segundoApellido,
-           Model.Sexo sexo, DateTime fechaDeNacimiento, string cedulaMadre, string cedulaPadre);
+        public void Edite(EstudianteParaIE estudiante);
         List<Model.Estudiante> ListeLosHijos(string cedula);
         List<Model.Estudiante> ListeLosPadres(string cedula);
         List<Model.Estudiante> ListeLosHermanos(string cedula);

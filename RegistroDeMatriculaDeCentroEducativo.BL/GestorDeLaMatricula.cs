@@ -1,4 +1,5 @@
 ﻿using RegistroDeMatriculaDeCentroEducativo.Model;
+using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
@@ -16,20 +17,19 @@ namespace RegistroDeMatriculaDeCentroEducativo.BL
             Connection = connection;
         }
 
-        public void Edite(int id, string cedula, string nombre, string primerApellido, string segundoApellido, Sexo sexo, DateTime fechaDeNacimiento, string cedulaMadre, string cedulaPadre)
+        public void Edite(EstudianteParaIE estudiante)
         {
             Model.Estudiante EstudianteAModificar;
-            EstudianteAModificar = RetorneElEstudiantePorId(id);
+            EstudianteAModificar = RetorneElEstudiantePorId(estudiante.Id);
 
-            EstudianteAModificar.Cedula = cedula;
-            EstudianteAModificar.Nombre = nombre;
-            EstudianteAModificar.PrimerApellido = primerApellido;
-            EstudianteAModificar.SegundoApellido = segundoApellido;
-            EstudianteAModificar.Sexo = sexo;
-            EstudianteAModificar.FechaDeNacimiento = fechaDeNacimiento;
-            EstudianteAModificar.Edad = RetorneLaEdad(EstudianteAModificar);
-            EstudianteAModificar.CedulaPadre = cedulaPadre;
-            EstudianteAModificar.CedulaMadre = cedulaMadre;
+            EstudianteAModificar.Cedula = estudiante.Cedula;
+            EstudianteAModificar.Nombre = estudiante.Nombre;
+            EstudianteAModificar.PrimerApellido = estudiante.PrimerApellido;
+            EstudianteAModificar.SegundoApellido = estudiante.SegundoApellido;
+            EstudianteAModificar.Sexo = estudiante.Sexo;
+            EstudianteAModificar.FechaDeNacimiento = estudiante.FechaDeNacimiento;
+            EstudianteAModificar.CedulaPadre = estudiante.CedulaPadre;
+            EstudianteAModificar.CedulaMadre = estudiante.CedulaMadre;
             Connection.Estudiantes.Update(EstudianteAModificar);
             Connection.SaveChanges();
 
@@ -156,10 +156,10 @@ namespace RegistroDeMatriculaDeCentroEducativo.BL
         {
             Model.Estudiante estudianteHijo;
             estudianteHijo = RetorneElEstudiantePorIdentificacion(cedula);
-           var InformacionDelPadre = from estudiante in Connection.Estudiantes
-                                  where estudiante.Cedula == estudianteHijo.CedulaPadre
-                                  || estudiante.Cedula == estudianteHijo.CedulaMadre
-                                  select estudiante;
+            var InformacionDelPadre = from estudiante in Connection.Estudiantes
+                                      where estudiante.Cedula == estudianteHijo.CedulaPadre
+                                      || estudiante.Cedula == estudianteHijo.CedulaMadre
+                                      select estudiante;
 
             if (InformacionDelPadre.Count() > 0)
             {
@@ -170,8 +170,6 @@ namespace RegistroDeMatriculaDeCentroEducativo.BL
                 return null;
             }
         }
-
-        
 
         public List<Model.Estudiante> ListeLosPrimos(string cedula)
         {
