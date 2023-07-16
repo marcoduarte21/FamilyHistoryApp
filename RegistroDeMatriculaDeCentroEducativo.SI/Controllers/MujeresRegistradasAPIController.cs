@@ -16,5 +16,14 @@ namespace RegistroDeMatriculaDeCentroEducativo.SI.Controllers
             GestorDeLaMatricula = new BL.GestorDeLaMatricula(connection);
         }
 
+
+        [HttpGet("GetDetallesMujeresRegistradas")]
+        // GET: VentasAPI
+        public List<Model.Estudiante> GetDetallesMujeresRegistradas()
+        {
+            return GestorDeLaMatricula.ListeLasMujeresRegistradas();
+        }
+
     }
+
 }

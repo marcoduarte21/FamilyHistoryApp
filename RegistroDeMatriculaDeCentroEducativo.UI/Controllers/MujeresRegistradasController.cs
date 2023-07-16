@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebUtilities;
+using Newtonsoft.Json;
 
 namespace RegistroDeMatriculaDeCentroEducativo.UI.Controllers
 {
@@ -13,19 +15,41 @@ namespace RegistroDeMatriculaDeCentroEducativo.UI.Controllers
             Connection = connection;
             GestorDeLaMatricula = new BL.GestorDeLaMatricula(Connection);
         }
-        // GET: HombresRegistradosController
-        public ActionResult Index()
+        // GET: MujeresRegistradasController
+        public async Task<IActionResult> Index()
         {
-            List<Model.Estudiante> Lista;
-            Lista = GestorDeLaMatricula.ListeLasMujeresRegistradas();
-            return View(Lista);
+
+            var httpClient = new HttpClient();
+            List<Model.Estudiante> lista;
+
+
+            var respuesta = await httpClient.GetAsync("https://api-matricula-estudiantes.azurewebsites.net/api/MujeresRegistradasAPI/GetDetallesMujeresRegistradas");
+            string apiRespuesta = await respuesta.Content.ReadAsStringAsync();
+            lista = JsonConvert.DeserializeObject<List<Model.Estudiante>>(apiRespuesta);
+
+            return View(lista);
         }
 
-        // GET: HombresRegistradosController/Details/5
-        public ActionResult Details(string cedula)
+        // GET: MujeresRegistradosController/Details/5
+        public async Task<ActionResult> Details(int id)
         {
             Model.Estudiante estudiante;
-            estudiante = GestorDeLaMatricula.RetorneElEstudiantePorIdentificacion(cedula);
+
+            var httpClient = new HttpClient();
+
+            var query = new Dictionary<string, string>()
+            {
+
+                ["id"] = id.ToString(),
+            };
+
+            var uri = QueryHelpers.AddQueryString("https://api-matricula-estudiantes.azurewebsites.net/api/EstudianteAPI/GetEstudiante", query);
+
+            var response = await httpClient.GetAsync(uri);
+            string apiResponse = await response.Content.ReadAsStringAsync();
+            estudiante = JsonConvert.DeserializeObject<Model.Estudiante>(apiResponse);
+
+
             ViewBag.edad = GestorDeLaMatricula.RetorneLaEdad(estudiante);
             return View(estudiante);
         }

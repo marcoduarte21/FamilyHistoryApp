@@ -18,5 +18,13 @@ namespace RegistroDeMatriculaDeCentroEducativo.SI.Controllers
         }
 
 
+        [HttpGet("GetDetallesHombresRegistrados")]
+        // GET: VentasAPI
+        public List<Model.Estudiante> GetDetallesHombresRegistrados()
+        {
+            return GestorDeLaMatricula.ListeLosHombresRegistrados();
+        }
+
+
     }
 }
