@@ -38,7 +38,7 @@ namespace RegistroDeMatriculaDeCentroEducativo.BL
         public List<Estudiante> ListeLasMujeresRegistradas()
         {
            var listaDeMujeresRegistradas = from estudiante in Connection.Estudiantes
-                                           where estudiante.Sexo == Sexo.FEMENINO
+                                           where estudiante.Sexo == Sexo.FEMENINO   
                                            select estudiante;
 
             return (List<Model.Estudiante>)listaDeMujeresRegistradas.ToList();
