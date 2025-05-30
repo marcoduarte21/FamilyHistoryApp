@@ -20,19 +20,18 @@ namespace RegistroDeMatriculaDeCentroEducativo.BL
         public void Edite(EstudianteParaIE estudiante)
         {
             Model.Estudiante EstudianteAModificar;
-            EstudianteAModificar = RetorneElEstudiantePorId(estudiante.Id);
+            EstudianteAModificar = RetorneElEstudiantePorIdentificacion(estudiante.Cedula);
 
-            EstudianteAModificar.Cedula = estudiante.Cedula;
-            EstudianteAModificar.Nombre = estudiante.Nombre;
-            EstudianteAModificar.PrimerApellido = estudiante.PrimerApellido;
-            EstudianteAModificar.SegundoApellido = estudiante.SegundoApellido;
-            EstudianteAModificar.Sexo = estudiante.Sexo;
-            EstudianteAModificar.FechaDeNacimiento = estudiante.FechaDeNacimiento;
-            EstudianteAModificar.CedulaPadre = estudiante.CedulaPadre;
-            EstudianteAModificar.CedulaMadre = estudiante.CedulaMadre;
-            Connection.Estudiantes.Update(EstudianteAModificar);
-            Connection.SaveChanges();
-
+                EstudianteAModificar.Cedula = estudiante.Cedula;
+                EstudianteAModificar.Nombre = estudiante.Nombre;
+                EstudianteAModificar.PrimerApellido = estudiante.PrimerApellido;
+                EstudianteAModificar.SegundoApellido = estudiante.SegundoApellido;
+                EstudianteAModificar.Sexo = estudiante.Sexo;
+                EstudianteAModificar.FechaDeNacimiento = estudiante.FechaDeNacimiento;
+                EstudianteAModificar.CedulaPadre = estudiante.CedulaPadre;
+                EstudianteAModificar.CedulaMadre = estudiante.CedulaMadre;
+                Connection.Estudiantes.Update(EstudianteAModificar);
+                Connection.SaveChanges();
         }
 
         public List<Estudiante> ListeLasMujeresRegistradas()
@@ -251,19 +250,19 @@ namespace RegistroDeMatriculaDeCentroEducativo.BL
 
         public void Registre(EstudianteParaIE estudiante)
         {
-                    Model.Estudiante estudiante1 = new Estudiante();
-                    estudiante1.Cedula = estudiante.Cedula;
-                    estudiante1.CedulaMadre = estudiante.CedulaMadre;
-                    estudiante1.CedulaPadre = estudiante.CedulaPadre;
-            estudiante1.FechaDeNacimiento = estudiante.FechaDeNacimiento;
-            estudiante1.Sexo = estudiante.Sexo;
-            estudiante1.Nombre = estudiante.Nombre;
-            estudiante1.PrimerApellido = estudiante.PrimerApellido;
-            estudiante1.SegundoApellido = estudiante.SegundoApellido;
+                Model.Estudiante newStudent = new Estudiante();
+                newStudent.Id = estudiante.Id;
+                newStudent.Cedula = estudiante.Cedula;
+                newStudent.CedulaMadre = estudiante.CedulaMadre;
+                newStudent.CedulaPadre = estudiante.CedulaPadre;
+                newStudent.FechaDeNacimiento = estudiante.FechaDeNacimiento;
+                newStudent.Sexo = estudiante.Sexo;
+                newStudent.Nombre = estudiante.Nombre;
+                newStudent.PrimerApellido = estudiante.PrimerApellido;
+                newStudent.SegundoApellido = estudiante.SegundoApellido;
 
-
-                    Connection.Estudiantes.Add(estudiante1);
-                    Connection.SaveChanges();
+                Connection.Estudiantes.Add(newStudent);
+                Connection.SaveChanges();
                 
         }
 
@@ -289,27 +288,6 @@ namespace RegistroDeMatriculaDeCentroEducativo.BL
                 }
             }
             return null;
-        }
-
-        public int RetorneLaEdad(Estudiante estudiante)
-        {
-
-            int edad = 0;
-            if(estudiante.FechaDeNacimiento.Value.Month > DateTime.Today.Month
-          || estudiante.FechaDeNacimiento.Value.Month == DateTime.Today.Month &&
-          estudiante.FechaDeNacimiento.Value.Day < DateTime.Today.Day)
-            {
-                edad = DateTime.Today.Year - estudiante.FechaDeNacimiento.Value.Year - 1;
-                
-
-            }
-            else
-            {
-                edad = DateTime.Today.Year - estudiante.FechaDeNacimiento.Value.Year;
-               
-            }
-
-            return edad;
         }
 
     }

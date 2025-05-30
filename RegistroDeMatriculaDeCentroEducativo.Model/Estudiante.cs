@@ -31,13 +31,34 @@ namespace RegistroDeMatriculaDeCentroEducativo.Model
         public DateTime? FechaDeNacimiento { get; set; }
         [Required(ErrorMessage = "El campo Cédula de la Madre es requerido.")]
         [Display(Name = "Cédula de la Madre")]
-        public string CedulaMadre{ get; set; }
+        public string CedulaMadre { get; set; }
         [Required(ErrorMessage = "El campo Cédula del Padre es requerido.")]
         [Display(Name = "Cédula del Padre")]
         public string CedulaPadre { get; set; }
 
         [NotMapped]
-        public int Edad { get; set; }
+        public int Edad
+        {
+            get
+            {
+                if (!FechaDeNacimiento.HasValue)
+                {
+                    throw new InvalidOperationException("Fecha de nacimiento es null.");
+                }
+
+                var today = DateTime.Today;
+                var fechaNacimiento = FechaDeNacimiento.Value;
+                int edad = today.Year - fechaNacimiento.Year;
+
+                if (fechaNacimiento.Month > today.Month ||
+                    (fechaNacimiento.Month == today.Month && fechaNacimiento.Day > today.Day))
+                {
+                    edad--;
+                }
+
+                return edad;
+            }
+        }
 
 
     }

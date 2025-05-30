@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RegistroDeMatriculaDeCentroEducativo.Model;
 
 namespace RegistroDeMatriculaDeCentroEducativo.SI.Controllers
 {
@@ -16,9 +17,24 @@ namespace RegistroDeMatriculaDeCentroEducativo.SI.Controllers
         }
 
         [HttpGet("GetPadres")]
-        public List<Model.Estudiante> GetPadres(string cedula)
+        public IActionResult GetPadres(string cedula)
         {
-            return GestorDeLaMatricula.ListeLosPadres(cedula);
+            try
+            {
+                Estudiante estudiante = GestorDeLaMatricula.RetorneElEstudiantePorIdentificacion(cedula);
+                if (estudiante == null)
+                {
+                    return BadRequest("Student with cedula not found.");
+                }
+                else
+                {
+                    return Ok(GestorDeLaMatricula.ListeLosPadres(cedula));
+                }
+            }
+            catch (Exception ex)
+            {
+                    return BadRequest(ex.Message);
+            }
         }
 
         [HttpGet("GetHijos")]

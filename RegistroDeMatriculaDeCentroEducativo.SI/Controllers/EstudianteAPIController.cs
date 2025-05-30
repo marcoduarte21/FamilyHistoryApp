@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
+using RegistroDeMatriculaDeCentroEducativo.BL;
+using RegistroDeMatriculaDeCentroEducativo.Model;
 
 namespace RegistroDeMatriculaDeCentroEducativo.SI.Controllers
 {
@@ -22,16 +25,69 @@ namespace RegistroDeMatriculaDeCentroEducativo.SI.Controllers
         }
 
         [HttpGet("GetEstudiante")]
-        public Model.Estudiante GetEstudiante(int id)
+        public IActionResult GetEstudiante(int id)
         {
-            return GestorDeLaMatricula.RetorneElEstudiantePorId(id);
+            try
+            {
+                Estudiante estudiante = GestorDeLaMatricula.RetorneElEstudiantePorId(id);
+                if (estudiante != null)
+                {
+                    return Ok(estudiante);
+                }
+                else return BadRequest("Student Not Found :(.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("GetStudentByCedula")]
+        public IActionResult GetEstudianteByCedula(string cedula)
+        {
+            Estudiante estudiante = new Estudiante();
+            estudiante = GestorDeLaMatricula.RetorneElEstudiantePorIdentificacion(cedula);
+
+            if (estudiante != null)
+            {
+                return Ok(estudiante);
+            }
+            else
+            {
+                return NotFound("Student not found :(.");
+            }
+
         }
 
         [HttpPost("CreateStudent")]
         public IActionResult CreateStudent([FromBody] Model.EstudianteParaIE estudiante)
         {
-            GestorDeLaMatricula.Registre(estudiante);
-            return Ok(estudiante);
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    Estudiante existingStudent = GestorDeLaMatricula.RetorneElEstudiantePorIdentificacion(estudiante.Cedula);
+
+                    if (existingStudent != null)
+                    {
+
+                        throw new CustomException("El estudiante ya existe." , 400);
+                    }
+                    else
+
+                    GestorDeLaMatricula.Registre(estudiante);
+                    Estudiante newStudent = GestorDeLaMatricula.RetorneElEstudiantePorIdentificacion(estudiante.Cedula);
+                    return Ok(newStudent);
+                }
+                else
+                {
+                    return BadRequest(ModelState);
+                }
+            }
+            catch (CustomException ex)
+            {
+                return StatusCode(ex.ErrorCode, ex.Message);
+            }
         }
 
         [HttpPut("EditStudent")]

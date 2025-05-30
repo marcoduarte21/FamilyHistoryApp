@@ -23,10 +23,6 @@ namespace RegistroDeMatriculaDeCentroEducativo.BL
         List<Model.Estudiante> ListeLosPrimos(string cedula);
         List<Model.Estudiante> ListeLosHombresRegistrados();
         List<Model.Estudiante> ListeLasMujeresRegistradas();
-        public int RetorneLaEdad(Estudiante estudiante);
-         
-       
-
 
     }
 }
