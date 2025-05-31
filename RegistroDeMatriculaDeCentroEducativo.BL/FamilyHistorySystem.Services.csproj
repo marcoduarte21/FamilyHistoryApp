@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AnalysisLevel>6.0-all</AnalysisLevel>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RegistroDeMatriculaCentroEducativo.Exceptions\FamilyHistorySystem.Exceptions.csproj" />
+    <ProjectReference Include="..\RegistroDeMatriculaDeCentroEducativo.DA\FamilyHistorySystem.Data.csproj" />
+    <ProjectReference Include="..\RegistroDeMatriculaDeCentroEducativo.Model\FamilyHistorySystem.Model.csproj" />
+  </ItemGroup>
+
+</Project>

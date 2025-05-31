@@ -9,11 +9,11 @@ namespace RegistroDeMatriculaDeCentroEducativo.SI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EstudianteAPIController : ControllerBase
+    public class StudentController : ControllerBase
     {
         DA.DBContexto DBContexto;
         GestorDeLaMatricula GestorDeLaMatricula;
-        public EstudianteAPIController(DA.DBContexto connection)
+        public StudentController(DA.DBContexto connection)
         {
             DBContexto = connection;
             GestorDeLaMatricula = new BL.GestorDeLaMatricula(connection);

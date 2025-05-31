@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RegistroDeMatriculaDeCentroEducativo.Model\RegistroDeMatriculaDeCentroEducativo.Model.csproj" />
+    <ProjectReference Include="..\RegistroDeMatriculaDeCentroEducativo.Model\FamilyHistorySystem.Model.csproj" />
   </ItemGroup>
 
 </Project>

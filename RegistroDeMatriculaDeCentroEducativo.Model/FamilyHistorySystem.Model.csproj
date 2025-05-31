@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RegistroDeMatriculaCentroEducativo.Exceptions\RegistroDeMatriculaDeCentroEducativo.Exceptions.csproj" />
+    <ProjectReference Include="..\RegistroDeMatriculaCentroEducativo.Exceptions\FamilyHistorySystem.Exceptions.csproj" />
   </ItemGroup>
 
 </Project>

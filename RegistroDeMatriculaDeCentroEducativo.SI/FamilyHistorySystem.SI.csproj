@@ -17,10 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RegistroDeMatriculaCentroEducativo.Exceptions\RegistroDeMatriculaDeCentroEducativo.Exceptions.csproj" />
-    <ProjectReference Include="..\RegistroDeMatriculaDeCentroEducativo.BL\RegistroDeMatriculaDeCentroEducativo.BL.csproj" />
-    <ProjectReference Include="..\RegistroDeMatriculaDeCentroEducativo.DA\RegistroDeMatriculaDeCentroEducativo.DA.csproj" />
-    <ProjectReference Include="..\RegistroDeMatriculaDeCentroEducativo.Model\RegistroDeMatriculaDeCentroEducativo.Model.csproj" />
+    <ProjectReference Include="..\RegistroDeMatriculaCentroEducativo.Exceptions\FamilyHistorySystem.Exceptions.csproj" />
+    <ProjectReference Include="..\RegistroDeMatriculaDeCentroEducativo.BL\FamilyHistorySystem.Services.csproj" />
+    <ProjectReference Include="..\RegistroDeMatriculaDeCentroEducativo.DA\FamilyHistorySystem.Data.csproj" />
+    <ProjectReference Include="..\RegistroDeMatriculaDeCentroEducativo.Model\FamilyHistorySystem.Model.csproj" />
   </ItemGroup>
 
 </Project>
