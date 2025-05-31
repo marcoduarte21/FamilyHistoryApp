@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using RegistroDeMatriculaDeCentroEducativo.BL.interfaces;
-using RegistroDeMatriculaDeCentroEducativo.Model.DTOs;
-using RegistroDeMatriculaDeCentroEducativo.Model.Entities;
 
 namespace RegistroDeMatriculaDeCentroEducativo.SI.Controllers
 {
@@ -12,11 +9,11 @@ namespace RegistroDeMatriculaDeCentroEducativo.SI.Controllers
     public class StudentController : ControllerBase
     {
         DA.DBContexto DBContexto;
-        GestorDeLaMatricula GestorDeLaMatricula;
+        StudentService StudentService;
         public StudentController(DA.DBContexto connection)
         {
             DBContexto = connection;
-            GestorDeLaMatricula = new BL.GestorDeLaMatricula(connection);
+            StudentService = new StudentService(connection);
         }
 
         [HttpGet("GetEstudiantes")]

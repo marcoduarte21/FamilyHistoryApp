@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
-using RegistroDeMatriculaDeCentroEducativo.Exceptions;
+using FamilyHistorySystem.Exceptions;
 
 namespace RegistroDeMatriculaDeCentroEducativo.BL.services
 {
@@ -21,6 +21,7 @@ namespace RegistroDeMatriculaDeCentroEducativo.BL.services
 
         public FamilyHistoryService(DBContexto connection) {
             Connection = connection;
+            StudentService = new StudentService(Connection);
         }
         public async Task<List<Estudiante>> GetChildren(string cedula)
         {
