@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using RegistroDeMatriculaDeCentroEducativo.BL;
-using RegistroDeMatriculaDeCentroEducativo.Model;
+using RegistroDeMatriculaDeCentroEducativo.BL.interfaces;
+using RegistroDeMatriculaDeCentroEducativo.Model.DTOs;
+using RegistroDeMatriculaDeCentroEducativo.Model.Entities;
 
 namespace RegistroDeMatriculaDeCentroEducativo.SI.Controllers
 {
@@ -11,7 +12,7 @@ namespace RegistroDeMatriculaDeCentroEducativo.SI.Controllers
     public class EstudianteAPIController : ControllerBase
     {
         DA.DBContexto DBContexto;
-        BL.GestorDeLaMatricula GestorDeLaMatricula;
+        GestorDeLaMatricula GestorDeLaMatricula;
         public EstudianteAPIController(DA.DBContexto connection)
         {
             DBContexto = connection;
@@ -19,7 +20,7 @@ namespace RegistroDeMatriculaDeCentroEducativo.SI.Controllers
         }
 
         [HttpGet("GetEstudiantes")]
-        public List<Model.Estudiante> GetEstudiantes()
+        public List<Estudiante> GetEstudiantes()
         {
             return GestorDeLaMatricula.ListeLosEstudiantes();
         }
@@ -60,7 +61,7 @@ namespace RegistroDeMatriculaDeCentroEducativo.SI.Controllers
         }
 
         [HttpPost("CreateStudent")]
-        public IActionResult CreateStudent([FromBody] Model.EstudianteParaIE estudiante)
+        public IActionResult CreateStudent([FromBody] EstudianteDTO estudiante)
         {
             try
             {
@@ -91,7 +92,7 @@ namespace RegistroDeMatriculaDeCentroEducativo.SI.Controllers
         }
 
         [HttpPut("EditStudent")]
-        public IActionResult EditStudent([FromBody] Model.EstudianteParaIE estudiante)
+        public IActionResult EditStudent([FromBody] EstudianteDTO estudiante)
         {
 
             if (ModelState.IsValid)

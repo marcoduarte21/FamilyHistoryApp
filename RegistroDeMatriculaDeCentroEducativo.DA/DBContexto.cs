@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using RegistroDeMatriculaDeCentroEducativo.Model.Entities;
 using System.ComponentModel.DataAnnotations;
 
 namespace RegistroDeMatriculaDeCentroEducativo.DA
@@ -10,7 +11,7 @@ namespace RegistroDeMatriculaDeCentroEducativo.DA
             
         }
 
-        public DbSet<Model.Estudiante> Estudiantes { get; set;}
+        public DbSet<Estudiante> Estudiantes { get; set;}
 
 
     }

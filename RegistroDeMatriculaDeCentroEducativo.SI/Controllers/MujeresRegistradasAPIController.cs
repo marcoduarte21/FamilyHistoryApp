@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using RegistroDeMatriculaDeCentroEducativo.BL.interfaces;
+using RegistroDeMatriculaDeCentroEducativo.Model.Entities;
 
 namespace RegistroDeMatriculaDeCentroEducativo.SI.Controllers
 {
@@ -9,7 +11,7 @@ namespace RegistroDeMatriculaDeCentroEducativo.SI.Controllers
     public class MujeresRegistradasAPIController : ControllerBase
     {
         DA.DBContexto DBContexto;
-        BL.GestorDeLaMatricula GestorDeLaMatricula;
+        GestorDeLaMatricula GestorDeLaMatricula;
         public MujeresRegistradasAPIController(DA.DBContexto connection)
         {
             DBContexto = connection;
@@ -19,7 +21,7 @@ namespace RegistroDeMatriculaDeCentroEducativo.SI.Controllers
 
         [HttpGet("GetDetallesMujeresRegistradas")]
         // GET: VentasAPI
-        public List<Model.Estudiante> GetDetallesMujeresRegistradas()
+        public List<Estudiante> GetDetallesMujeresRegistradas()
         {
             return GestorDeLaMatricula.ListeLasMujeresRegistradas();
         }

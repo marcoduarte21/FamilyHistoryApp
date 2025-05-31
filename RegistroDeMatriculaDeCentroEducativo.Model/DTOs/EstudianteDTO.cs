@@ -1,19 +1,20 @@
-﻿using System;
+﻿using RegistroDeMatriculaDeCentroEducativo.Model.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace RegistroDeMatriculaDeCentroEducativo.Model
+namespace RegistroDeMatriculaDeCentroEducativo.Model.DTOs
 {
-    public class EstudianteParaIE
+    public class EstudianteDTO
     {
         [Key]
         public int Id { get; set; }
         [Required(ErrorMessage = "El campo Cédula es requerido.")]
         [Display(Name = "Cédula")]
-        public string Cedula { get; set; }
+        public string? Cedula { get; set; }
         [Required(ErrorMessage = "El campo Nombre es requerido.")]
         public string? Nombre { get; set; }
         [Required(ErrorMessage = "El campo Primer Apellido es requerido.")]
@@ -30,9 +31,9 @@ namespace RegistroDeMatriculaDeCentroEducativo.Model
         public DateTime? FechaDeNacimiento { get; set; }
         [Required(ErrorMessage = "El campo Cédula de la Madre es requerido.")]
         [Display(Name = "Cédula de la Madre")]
-        public string CedulaMadre { get; set; }
+        public string? CedulaMadre { get; set; }
         [Required(ErrorMessage = "El campo Cédula del Padre es requerido.")]
         [Display(Name = "Cédula del Padre")]
-        public string CedulaPadre { get; set; }
+        public string? CedulaPadre { get; set; }
     }
 }

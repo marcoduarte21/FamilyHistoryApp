@@ -5,8 +5,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data;
 using System.Data.Common;
 using Microsoft.EntityFrameworkCore;
+using RegistroDeMatriculaDeCentroEducativo.Exceptions;
 
-namespace RegistroDeMatriculaDeCentroEducativo.Model
+namespace RegistroDeMatriculaDeCentroEducativo.Model.Entities
 {
     public class Estudiante
     {
@@ -43,7 +44,7 @@ namespace RegistroDeMatriculaDeCentroEducativo.Model
             {
                 if (!FechaDeNacimiento.HasValue)
                 {
-                    throw new InvalidOperationException("Fecha de nacimiento es null.");
+                    throw new CustomException("Fecha de nacimiento es null.", 400);
                 }
 
                 var today = DateTime.Today;
@@ -51,7 +52,7 @@ namespace RegistroDeMatriculaDeCentroEducativo.Model
                 int edad = today.Year - fechaNacimiento.Year;
 
                 if (fechaNacimiento.Month > today.Month ||
-                    (fechaNacimiento.Month == today.Month && fechaNacimiento.Day > today.Day))
+                    fechaNacimiento.Month == today.Month && fechaNacimiento.Day > today.Day)
                 {
                     edad--;
                 }

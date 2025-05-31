@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace RegistroDeMatriculaDeCentroEducativo.Model
+namespace RegistroDeMatriculaDeCentroEducativo.Model.Entities
 {
     public enum Sexo
     {

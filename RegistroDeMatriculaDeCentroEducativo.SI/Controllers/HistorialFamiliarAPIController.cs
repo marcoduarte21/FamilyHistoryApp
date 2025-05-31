@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using RegistroDeMatriculaDeCentroEducativo.Model;
+using RegistroDeMatriculaDeCentroEducativo.BL.interfaces;
+using RegistroDeMatriculaDeCentroEducativo.Model.Entities;
 
 namespace RegistroDeMatriculaDeCentroEducativo.SI.Controllers
 {
@@ -9,7 +10,7 @@ namespace RegistroDeMatriculaDeCentroEducativo.SI.Controllers
     public class HistorialFamiliarAPIController : ControllerBase
     {
         DA.DBContexto DBContexto;
-        BL.GestorDeLaMatricula GestorDeLaMatricula;
+        GestorDeLaMatricula GestorDeLaMatricula;
         public HistorialFamiliarAPIController(DA.DBContexto connection)
         {
             DBContexto = connection;
@@ -38,31 +39,31 @@ namespace RegistroDeMatriculaDeCentroEducativo.SI.Controllers
         }
 
         [HttpGet("GetHijos")]
-        public List<Model.Estudiante> GetHijos(string cedula)
+        public List<Estudiante> GetHijos(string cedula)
         {
             return GestorDeLaMatricula.ListeLosHijos(cedula);
         }
 
         [HttpGet("GetHermanos")]
-        public List<Model.Estudiante> GetHermanos(string cedula)
+        public List<Estudiante> GetHermanos(string cedula)
         {
             return GestorDeLaMatricula.ListeLosHermanos(cedula);
         }
 
         [HttpGet("GetAbuelos")]
-        public List<Model.Estudiante> GetAbuelos(string cedula)
+        public List<Estudiante> GetAbuelos(string cedula)
         {
             return GestorDeLaMatricula.ListeLosAbuelos(cedula);
         }
 
         [HttpGet("GetTios")]
-        public List<Model.Estudiante> GetTios(string cedula)
+        public List<Estudiante> GetTios(string cedula)
         {
             return GestorDeLaMatricula.ListeLosTios(cedula);
         }
 
         [HttpGet("GetPrimos")]
-        public List<Model.Estudiante> GetPrimos(string cedula)
+        public List<Estudiante> GetPrimos(string cedula)
         {
             return GestorDeLaMatricula.ListeLosPrimos(cedula);
         }
